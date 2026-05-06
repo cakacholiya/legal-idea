@@ -1,0 +1,431 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us - Legal Idea</title>
+<link rel="icon" href="assets/Images/Fav-Icon.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/contact.css">
+</head>
+<body>
+
+  <header class="navbar" role="banner">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" aria-label="Legal Idea Home">
+        <img src="assets/Images/Logo.png" alt="Legal Idea">
+      </a>
+      <nav aria-label="Primary">
+        <ul class="nav-links">
+          <li class="nav-item">
+            <a href="income-tax-efiling.html">Income Tax <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+            <ul class="nav-dropdown" role="menu">
+              <li><a href="income-tax-efiling.html" role="menuitem">e-Filing</a></li>
+              <li><a href="income-tax-consultation.html" role="menuitem">Consultation</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="business-tax-return.html">Business Tax <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+            <ul class="nav-dropdown" role="menu">
+              <li><a href="business-tax-return.html" role="menuitem">Business Return</a></li>
+              <li><a href="tds.html" role="menuitem">TDS</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="gst-registration.html">GST <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+            <ul class="nav-dropdown" role="menu">
+              <li><a href="gst-registration.html" role="menuitem">Registration</a></li>
+              <li><a href="gst-compliance.html" role="menuitem">Compliance</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="company-registration.html">Corporate <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+            <ul class="nav-dropdown" role="menu">
+              <li><a href="company-registration.html" role="menuitem">Company Registration</a></li>
+              <li><a href="annual-compliance.html" role="menuitem">Annual Compliance</a></li>
+            </ul>
+          </li>
+          <li><a href="why-us.html">Why Us</a></li>
+          <li><a href="contact-us.html" class="active">Contact</a></li>
+          <li><a href="contact-us.html" class="nav-cta">Get Started</a></li>
+        </ul>
+      </nav>
+      <button type="button" class="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-overlay" aria-hidden="true"></div>
+  <aside class="mobile-nav" aria-label="Mobile navigation">
+    <button type="button" class="mobile-nav-close" aria-label="Close menu">&times;</button>
+    <ul>
+      <li><strong>Income Tax</strong></li>
+      <li><a href="income-tax-efiling.html">e-Filing</a></li>
+      <li><a href="income-tax-consultation.html">Consultation</a></li>
+      <li><strong>Business Tax</strong></li>
+      <li><a href="business-tax-return.html">Business Return</a></li>
+      <li><a href="tds.html">TDS</a></li>
+      <li><strong>GST</strong></li>
+      <li><a href="gst-registration.html">Registration</a></li>
+      <li><a href="gst-compliance.html">Compliance</a></li>
+      <li><strong>Corporate</strong></li>
+      <li><a href="company-registration.html">Company Registration</a></li>
+      <li><a href="annual-compliance.html">Annual Compliance</a></li>
+      <li><a href="why-us.html">Why Us</a></li>
+      <li><a href="contact-us.html">Contact</a></li>
+      <li><a href="contact-us.html" class="nav-cta mobile-nav-cta">Get Started</a></li>
+    </ul>
+  </aside>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="contact-hero">
+      <canvas id="contact-particles"></canvas>
+      <div class="contact-hero-content" data-aos="fade-up">
+        <div class="contact-hero-badge">
+          <i class="fas fa-headset"></i>
+          <span>We're Here to Help</span>
+        </div>
+        <h1>Let's Start a <span class="gradient-text">Conversation</span></h1>
+        <p class="contact-hero-desc">Have questions about tax filing, GST, or company registration? Our experts are ready to guide you every step of the way.</p>
+        <div class="contact-hero-stats">
+          <div class="hero-stat">
+            <span class="hero-stat-num">1000+</span>
+            <span class="hero-stat-label">Clients Served</span>
+          </div>
+          <div class="hero-stat-divider"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">&lt; 2hr</span>
+            <span class="hero-stat-label">Response Time</span>
+          </div>
+          <div class="hero-stat-divider"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">4.9/5</span>
+            <span class="hero-stat-label">Client Rating</span>
+          </div>
+        </div>
+      </div>
+      <div class="contact-hero-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+      </div>
+    </section>
+
+    <!-- Quick Connect Cards -->
+    <section class="quick-connect-section">
+      <div class="section-inner">
+        <div class="quick-connect-grid" data-aos="fade-up">
+          <a href="tel:+91XXXXXXXXXX" class="qc-card qc-phone">
+            <div class="qc-icon-wrap">
+              <div class="qc-icon-bg"></div>
+              <i class="fas fa-phone-volume"></i>
+            </div>
+            <h3>Call Us</h3>
+            <p>Speak directly with our tax experts</p>
+            <span class="qc-detail">Mon-Sat, 10AM - 7PM</span>
+          </a>
+          <a href="https://wa.me/91XXXXXXXXXX?text=Hi%2C%20I%20need%20help%20with%20Legal%20Idea%20services" target="_blank" rel="noopener noreferrer" class="qc-card qc-whatsapp">
+            <div class="qc-icon-wrap">
+              <div class="qc-icon-bg"></div>
+              <i class="fab fa-whatsapp"></i>
+            </div>
+            <h3>WhatsApp</h3>
+            <p>Quick responses on chat</p>
+            <span class="qc-detail">Typically replies in minutes</span>
+          </a>
+          <a href="mailto:info@legalidea.in" class="qc-card qc-email">
+            <div class="qc-icon-wrap">
+              <div class="qc-icon-bg"></div>
+              <i class="fas fa-envelope"></i>
+            </div>
+            <h3>Email Us</h3>
+            <p>Detailed queries and documents</p>
+            <span class="qc-detail">info@legalidea.in</span>
+          </a>
+          <div class="qc-card qc-visit">
+            <div class="qc-icon-wrap">
+              <div class="qc-icon-bg"></div>
+              <i class="fas fa-location-dot"></i>
+            </div>
+            <h3>Visit Office</h3>
+            <p>Meet us in person</p>
+            <span class="qc-detail">Indore, Madhya Pradesh</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Contact Form Section -->
+    <section class="contact-main-section">
+      <div class="contact-main-inner">
+        <!-- Left: Form -->
+        <div class="contact-form-wrapper" data-aos="fade-right">
+          <div class="form-header">
+            <span class="form-tag"><i class="fas fa-paper-plane"></i> Send a Message</span>
+            <h2>Get a Free Consultation</h2>
+            <p>Fill in the details below and our team will get back to you within 2 hours.</p>
+          </div>
+          <form class="contact-form-v2" action="#" method="post">
+            <div class="form-row">
+              <div class="form-group">
+                <div class="input-icon-wrap">
+                  <i class="fas fa-user"></i>
+                  <input type="text" id="cf-name" name="name" placeholder="Your Full Name" required autocomplete="name">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-icon-wrap">
+                  <i class="fas fa-envelope"></i>
+                  <input type="email" id="cf-email" name="email" placeholder="Email Address" required autocomplete="email">
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <div class="input-icon-wrap">
+                  <i class="fas fa-phone"></i>
+                  <input type="tel" id="cf-phone" name="phone" placeholder="Phone Number" autocomplete="tel">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-icon-wrap">
+                  <i class="fas fa-briefcase"></i>
+                  <select id="cf-service" name="service">
+                    <option value="" disabled selected>Select Service</option>
+                    <option value="income-tax">Income Tax Filing</option>
+                    <option value="business-tax">Business Tax Return</option>
+                    <option value="gst-reg">GST Registration</option>
+                    <option value="gst-comp">GST Compliance</option>
+                    <option value="company-reg">Company Registration</option>
+                    <option value="annual-comp">Annual Compliance</option>
+                    <option value="tds">TDS</option>
+                    <option value="consultation">Tax Consultation</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-icon-wrap textarea-wrap">
+                <i class="fas fa-message"></i>
+                <textarea id="cf-message" name="message" placeholder="Tell us about your requirement..." rows="5"></textarea>
+              </div>
+            </div>
+            <button type="submit" class="submit-btn">
+              <span>Send Message</span>
+              <i class="fas fa-arrow-right"></i>
+              <div class="btn-shimmer"></div>
+            </button>
+          </form>
+          <div class="form-trust">
+            <div class="trust-item"><i class="fas fa-shield-halved"></i><span>100% Secure</span></div>
+            <div class="trust-item"><i class="fas fa-clock"></i><span>Quick Response</span></div>
+            <div class="trust-item"><i class="fas fa-lock"></i><span>Data Protected</span></div>
+          </div>
+        </div>
+
+        <!-- Right: Info & Map -->
+        <div class="contact-info-wrapper" data-aos="fade-left">
+          <div class="info-glass-card">
+            <div class="info-card-header">
+              <h3>Office Information</h3>
+              <div class="online-badge"><span class="pulse-dot"></span> We're Online</div>
+            </div>
+            <div class="info-details">
+              <div class="info-row">
+                <div class="info-row-icon"><i class="fas fa-building"></i></div>
+                <div>
+                  <strong>Legal Idea Consultancy Pvt. Ltd.</strong>
+                  <p>Indore, Madhya Pradesh, India</p>
+                </div>
+              </div>
+              <div class="info-row">
+                <div class="info-row-icon"><i class="fas fa-clock"></i></div>
+                <div>
+                  <strong>Working Hours</strong>
+                  <p>Mon - Sat: 10:00 AM - 7:00 PM</p>
+                </div>
+              </div>
+              <div class="info-row">
+                <div class="info-row-icon"><i class="fas fa-language"></i></div>
+                <div>
+                  <strong>Languages</strong>
+                  <p>English, Hindi</p>
+                </div>
+              </div>
+            </div>
+            <div class="info-social">
+              <a href="https://www.facebook.com/Legalidea.in/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="https://twitter.com/Legalidea" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+              <a href="https://www.linkedin.com/company/legalideaconsultancy" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+              <a href="https://www.instagram.com/legalidea.in/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+
+          <div class="map-card">
+            <div class="map-placeholder">
+              <div class="map-pin-animated">
+                <i class="fas fa-location-dot"></i>
+                <div class="pin-ring"></div>
+                <div class="pin-ring pin-ring-2"></div>
+              </div>
+              <p>Indore, Madhya Pradesh</p>
+              <a href="https://maps.google.com/?q=Indore+Madhya+Pradesh+India" target="_blank" rel="noopener noreferrer" class="map-link">
+                <i class="fas fa-directions"></i> Get Directions
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="contact-faq-section">
+      <div class="section-inner">
+        <div class="faq-header" data-aos="fade-up">
+          <span class="section-tag"><i class="fas fa-circle-question"></i> FAQ</span>
+          <h2 class="section-title">Frequently Asked Questions</h2>
+          <p class="section-subtitle">Quick answers to common queries</p>
+        </div>
+        <div class="faq-grid" data-aos="fade-up" data-aos-delay="100">
+          <div class="faq-item">
+            <button class="faq-trigger" type="button">
+              <span>How quickly can you file my income tax return?</span>
+              <i class="fas fa-plus"></i>
+            </button>
+            <div class="faq-content">
+              <p>We typically complete income tax filings within 24-48 hours of receiving all necessary documents. For urgent cases, we offer same-day filing services.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-trigger" type="button">
+              <span>What documents do I need for GST registration?</span>
+              <i class="fas fa-plus"></i>
+            </button>
+            <div class="faq-content">
+              <p>You'll need PAN card, Aadhaar card, business address proof, bank statement, photographs, and business registration documents. Our team will guide you through the exact requirements.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-trigger" type="button">
+              <span>Do you offer free initial consultation?</span>
+              <i class="fas fa-plus"></i>
+            </button>
+            <div class="faq-content">
+              <p>Yes! We offer a free 15-minute consultation to understand your requirements and suggest the best service plan. No obligations attached.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-trigger" type="button">
+              <span>What are your payment options?</span>
+              <i class="fas fa-plus"></i>
+            </button>
+            <div class="faq-content">
+              <p>We accept all major payment methods including UPI, net banking, credit/debit cards, and bank transfers. Payment is only required after service confirmation.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-trigger" type="button">
+              <span>Is my data safe with Legal Idea?</span>
+              <i class="fas fa-plus"></i>
+            </button>
+            <div class="faq-content">
+              <p>Absolutely. We use enterprise-grade encryption and follow strict data protection protocols. Your financial data is never shared with third parties.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-trigger" type="button">
+              <span>Can I track the status of my filing?</span>
+              <i class="fas fa-plus"></i>
+            </button>
+            <div class="faq-content">
+              <p>Yes, you'll receive real-time updates via WhatsApp and email at every stage of your filing process. You can also reach out to your assigned expert anytime.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="contact-cta-section">
+      <div class="cta-inner" data-aos="zoom-in">
+        <div class="cta-content">
+          <h2>Ready to Simplify Your Taxes?</h2>
+          <p>Join 1000+ happy clients who trust Legal Idea for all their tax and compliance needs.</p>
+          <div class="cta-buttons">
+            <a href="https://wa.me/91XXXXXXXXXX?text=Hi%2C%20I%20need%20help" target="_blank" rel="noopener noreferrer" class="cta-btn-primary">
+              <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+            </a>
+            <a href="tel:+91XXXXXXXXXX" class="cta-btn-secondary">
+              <i class="fas fa-phone"></i> Call Now
+            </a>
+          </div>
+        </div>
+        <div class="cta-decoration">
+          <div class="cta-circle cta-circle-1"></div>
+          <div class="cta-circle cta-circle-2"></div>
+          <div class="cta-circle cta-circle-3"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <img src="assets/Images/Logo-white.png" alt="Legal Idea" style="height:44px;margin-bottom:1rem;">
+        <p>Legalidea, is the largest Tax Service provider company with over 1000+ returns filed annually.</p>
+        <div class="social-links">
+          <a href="https://www.facebook.com/Legalidea.in/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+          <a href="https://twitter.com/Legalidea" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+          <a href="https://www.linkedin.com/company/legalideaconsultancy" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4>Income Tax Services</h4>
+        <ul>
+          <li><a href="income-tax-efiling.html">e-Filing</a></li>
+          <li><a href="income-tax-consultation.html">Consultation</a></li>
+          <li><a href="business-tax-return.html">Business Return</a></li>
+          <li><a href="tds.html">TDS</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>GST &amp; Corporate</h4>
+        <ul>
+          <li><a href="gst-registration.html">GST Registration</a></li>
+          <li><a href="gst-compliance.html">GST Compliance</a></li>
+          <li><a href="company-registration.html">Company Registration</a></li>
+          <li><a href="annual-compliance.html">Annual Compliance</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>About</h4>
+        <ul>
+          <li><a href="why-us.html">Why Us</a></li>
+          <li><a href="our-team.html">Our Team</a></li>
+          <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">&copy; Legal Idea Consultancy Private Limited</div>
+  </footer>
+
+  <div class="wa-float">
+    <div class="wa-popup">
+      <div class="wa-popup-header"><h4>Legal Idea</h4><p>Typically replies within minutes</p></div>
+      <div class="wa-popup-body">
+        <p>Hi! Need help with tax filing, GST, or company registration?</p>
+        <a href="https://wa.me/91XXXXXXXXXX?text=Hi%2C%20I%20need%20help%20with%20tax%20filing" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp" aria-hidden="true"></i> Start Chat</a>
+      </div>
+    </div>
+    <button type="button" class="wa-btn" aria-label="Open WhatsApp chat"><i class="fab fa-whatsapp" aria-hidden="true"></i></button>
+  </div>
+
+  <button type="button" class="back-top" aria-label="Back to top"><i class="fas fa-arrow-up" aria-hidden="true"></i></button>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/contact.js"></script>
+</body></html>
