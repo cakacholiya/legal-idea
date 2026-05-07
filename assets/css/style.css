@@ -869,3 +869,11 @@ button.faq-q { font-family: inherit; }
   background: white; border-radius: calc(var(--radius-xl) - 3px);
   padding: 2.5rem; position: relative; z-index: 1;
 }
+
+/* Page Disclaimer */
+.page-disclaimer-section{max-width:900px;margin:0 auto;padding:0 1.5rem 3rem}
+.page-disclaimer{padding:1.5rem 1.8rem;background:#fff9f0;border:1px solid #f0d9b5;border-radius:var(--radius-md);position:relative}
+.page-disclaimer .disclaimer-icon{position:absolute;top:-14px;left:24px;width:28px;height:28px;background:#f59e0b;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.75rem}
+.page-disclaimer h4{font-size:.95rem;font-weight:700;color:#92400e;margin-bottom:.6rem}
+.page-disclaimer p{font-size:.85rem;color:#78350f;line-height:1.7;margin-bottom:.5rem}
+.page-disclaimer p:last-child{margin-bottom:0}

@@ -48,6 +48,25 @@
 .blog-post-content .highlight-box{background:linear-gradient(135deg,rgba(99,102,241,.05),rgba(6,182,212,.05));border:1px solid rgba(99,102,241,.15);border-radius:var(--radius-md);padding:1.5rem;margin:1.5rem 0}
 .blog-post-content .highlight-box h4{color:var(--primary-dark);margin-bottom:.5rem}
 
+/* Author Box */
+.blog-author-box{display:flex;gap:1.5rem;align-items:flex-start;max-width:780px;margin:0 auto 2rem;padding:2rem;background:linear-gradient(135deg,#f8f9ff 0%,#f0f4ff 100%);border:1px solid rgba(99,102,241,.12);border-radius:var(--radius-lg)}
+.author-box-photo{width:90px;height:90px;border-radius:50%;object-fit:cover;border:3px solid var(--primary-light);flex-shrink:0}
+.author-box-info h4{font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--primary);margin-bottom:.25rem}
+.author-box-name{font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:.5rem}
+.author-box-bio{font-size:.92rem;color:var(--gray-600);line-height:1.7}
+@media(max-width:600px){.blog-author-box{flex-direction:column;align-items:center;text-align:center}.author-box-photo{width:72px;height:72px}}
+
+/* Disclaimer */
+.blog-disclaimer{max-width:780px;margin:0 auto 2.5rem;padding:1.5rem 1.8rem;background:#fff9f0;border:1px solid #f0d9b5;border-radius:var(--radius-md);position:relative}
+.blog-disclaimer .disclaimer-icon{position:absolute;top:-14px;left:24px;width:28px;height:28px;background:#f59e0b;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.75rem}
+.blog-disclaimer h4{font-size:.95rem;font-weight:700;color:#92400e;margin-bottom:.6rem}
+.blog-disclaimer p{font-size:.85rem;color:#78350f;line-height:1.7;margin-bottom:.5rem}
+.blog-disclaimer p:last-child{margin-bottom:0}
+
+/* Calculator Disclaimer */
+.calc-disclaimer{margin-top:1rem;padding:1rem 1.3rem;background:#fff9f0;border:1px solid #f0d9b5;border-radius:8px;font-size:.8rem;color:#78350f;line-height:1.6}
+.calc-disclaimer i{color:#f59e0b;margin-right:.4rem}
+
 /* Share & Like Bar */
 .blog-actions{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;max-width:780px;margin:0 auto;padding:1.5rem;background:var(--gray-50);border-radius:var(--radius-lg);margin-bottom:2rem}
 .blog-actions-left{display:flex;gap:.75rem}
