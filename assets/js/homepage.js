@@ -242,36 +242,42 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function buildShareUrl(prefill) {
-    var base = window.location.origin + window.location.pathname + '#tax-calculator';
-    if (!prefill) return base;
+    var base = window.location.origin + window.location.pathname;
+    if (!prefill) return base + '?calc=1#tax-calculator';
     var p = getCalcParams();
     return base + '?ci=' + p.i + '&ca=' + p.a + '&c80c=' + p.c + '&c80d=' + p.d
-      + '&chra=' + p.h + '&cnps=' + p.n + '&chl=' + p.l + '&coth=' + p.o;
+      + '&chra=' + p.h + '&cnps=' + p.n + '&chl=' + p.l + '&coth=' + p.o + '#tax-calculator';
   }
 
   function loadFromUrl() {
-    var params = new URLSearchParams(window.location.search);
-    if (!params.has('ci')) return false;
-    var map = { ci: 'calc-income', ca: 'calc-age', c80c: 'calc-80c', c80d: 'calc-80d',
-                chra: 'calc-hra', cnps: 'calc-nps', chl: 'calc-hloan', coth: 'calc-other' };
-    var hasData = false;
-    Object.keys(map).forEach(function (k) {
-      var v = params.get(k);
-      if (v !== null) {
-        var el = document.getElementById(map[k]);
-        if (el) { el.value = v; hasData = true; }
-      }
-    });
-    var slider = document.getElementById('calc-income-slider');
-    if (slider && params.get('ci')) slider.value = params.get('ci');
-    if (hasData) {
+    var raw = window.location.search || '';
+    // Also check if query params were incorrectly placed after hash
+    if (!raw && window.location.hash.indexOf('?') !== -1) {
+      raw = '?' + window.location.hash.split('?')[1];
+    }
+    var params = new URLSearchParams(raw);
+    var scrollToCalc = params.has('calc') || params.has('ci');
+    if (params.has('ci')) {
+      var map = { ci: 'calc-income', ca: 'calc-age', c80c: 'calc-80c', c80d: 'calc-80d',
+                  chra: 'calc-hra', cnps: 'calc-nps', chl: 'calc-hloan', coth: 'calc-other' };
+      Object.keys(map).forEach(function (k) {
+        var v = params.get(k);
+        if (v !== null) {
+          var el = document.getElementById(map[k]);
+          if (el) el.value = v;
+        }
+      });
+      var slider = document.getElementById('calc-income-slider');
+      if (slider && params.get('ci')) slider.value = params.get('ci');
       runCalculator();
+    }
+    if (scrollToCalc) {
       setTimeout(function () {
         var sec = document.getElementById('tax-calculator');
         if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 300);
+      }, 500);
     }
-    return hasData;
+    return scrollToCalc;
   }
   loadFromUrl();
 
@@ -280,13 +286,19 @@ document.addEventListener('DOMContentLoaded', function () {
   var shareUrlInput = document.getElementById('calc-share-url');
   var copyUrlBtn = document.getElementById('calc-copy-url');
 
+  var shareEmptyBtn = document.getElementById('calc-share-empty');
+
+  function showShareUrl(url) {
+    shareUrlInput.value = url;
+    shareLinkBar.style.display = 'flex';
+    shareUrlInput.select();
+  }
+
   if (shareLinkBtn) {
-    shareLinkBtn.addEventListener('click', function () {
-      var url = buildShareUrl(true);
-      shareUrlInput.value = url;
-      shareLinkBar.style.display = 'flex';
-      shareUrlInput.select();
-    });
+    shareLinkBtn.addEventListener('click', function () { showShareUrl(buildShareUrl(true)); });
+  }
+  if (shareEmptyBtn) {
+    shareEmptyBtn.addEventListener('click', function () { showShareUrl(buildShareUrl(false)); });
   }
   if (copyUrlBtn) {
     copyUrlBtn.addEventListener('click', function () {

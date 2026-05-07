@@ -537,20 +537,59 @@
   background: white; color: #25D366; font-size: 0.88rem; font-weight: 700; cursor: pointer;
   display: flex; align-items: center; justify-content: center; gap: 0.6rem; transition: all 0.3s;
 }
-.calc-share-btn:hover { background: #25D366; color: white; }
+.calc-share-btn:hover { background: #25D366; color: white; border-color: #25D366; }
+.calc-share-btn:active { transform: scale(0.97); }
 
 @media(max-width:900px) {
   .smart-tips-grid { grid-template-columns: 1fr 1fr; }
-  .expert-cta-banner { grid-template-columns: 1fr; }
+  .expert-cta-banner { grid-template-columns: 1fr; padding: 1.5rem; }
   .expert-cta-right { flex-direction: row; flex-wrap: wrap; }
+  .expert-cta-stats { gap: 1.2rem; }
 }
 @media(max-width:600px) {
+  .calc-wrapper-v2 { padding: 1rem; gap: 1rem; border-radius: 16px; }
+  .calc-input-panel, .calc-result-panel { padding: 1.2rem; border-radius: 14px; }
+  .calc-hero-header { margin-bottom: 1.5rem; }
+  .calc-title { font-size: 1.5rem; }
+  .calc-desc { font-size: 0.88rem; }
+  .calc-panel-header { font-size: 0.78rem; margin-bottom: 1rem; }
+  .calc-field-v2 label { font-size: 0.78rem; flex-wrap: wrap; }
+  .calc-field-v2 input, .calc-field-v2 select { padding: 0.6rem 0.8rem; font-size: 0.85rem; }
+  .calc-fields-grid { grid-template-columns: 1fr; gap: 0.6rem; }
+  .calc-field-v2.compact input { padding: 0.55rem 0.7rem; font-size: 0.82rem; }
+  .field-hint { display: block; margin-top: 0.1rem; }
+  .regime-compare { flex-direction: column; gap: 0.5rem; }
+  .regime-vs { justify-content: center; }
+  .regime-tax-amount { font-size: 1.3rem; }
+  .calc-detail-breakdown { grid-template-columns: 1fr; gap: 0.8rem; }
+  .detail-col { padding: 0.8rem; }
+  .calc-detail-breakdown .cb-row { font-size: 0.78rem; padding: 0.3rem 0; }
+  .savings-tip { padding: 0.8rem; }
+  .savings-tip p { font-size: 0.82rem; }
   .smart-tips-grid { grid-template-columns: 1fr; }
-  .expert-cta-stats { flex-direction: column; gap: 0.8rem; }
-  .expert-cta-features { grid-template-columns: 1fr; }
+  .smart-tips-section, .expert-cta-banner, .calc-full-width { grid-column: auto; }
+  .expert-cta-banner { padding: 1.2rem; }
+  .expert-cta-stats { flex-direction: row; gap: 0.5rem; flex-wrap: wrap; justify-content: center; }
+  .expert-stat-number { font-size: 1.1rem; }
+  .expert-stat-label { font-size: 0.68rem; }
+  .expert-cta-content h4 { font-size: 0.95rem; }
+  .expert-cta-content p { font-size: 0.8rem; }
+  .expert-cta-features { grid-template-columns: 1fr; gap: 0.25rem; }
+  .expert-cta-features span { font-size: 0.75rem; }
+  .expert-cta-right { flex-direction: column; min-width: auto; }
+  .expert-wa-btn { font-size: 0.82rem; padding: 0.75rem 1.2rem; }
+  .expert-cta-trust { flex-direction: column; align-items: center; gap: 0.3rem; }
   .calc-bottom-actions { flex-direction: column; }
-  .calc-share-btn, .calc-cta-v2 { width: 100%; }
-  .expert-cta-right { flex-direction: column; }
+  .calc-share-btn { width: 100%; font-size: 0.82rem; padding: 0.7rem 1rem; }
+  .calc-share-link-bar { flex-direction: column; }
+  .calc-share-link-bar input { font-size: 0.72rem; }
+  .calc-disclaimer { font-size: 0.75rem; padding: 0.8rem 1rem; }
+  .info-modal { padding: 1.2rem 1rem; max-width: 95vw; font-size: 0.82rem; }
+  .info-modal-header { font-size: 0.92rem; }
+  .tax-bar-row { gap: 0.3rem; }
+  .bar-label { width: 26px; font-size: 0.72rem; }
+  .bar-value { min-width: 60px; font-size: 0.72rem; }
+  .bar-track { height: 22px; }
 }
 
 /* Legacy calc styles kept for cb-row reuse */
@@ -569,11 +608,11 @@
 .cb-row.highlight { border-bottom: none; font-weight: 800; color: #10b981; font-size: 1.05rem; padding-top: 1rem; border-top: 2px solid #10b981; }
 .calc-cta { width: 100%; justify-content: center; font-size: 0.88rem; padding: 0.85rem 1.5rem; }
 @media (max-width: 900px) {
-  .calc-wrapper-v2 { grid-template-columns: 1fr; }
+  .calc-wrapper-v2 { grid-template-columns: 1fr; padding: 1.5rem; }
   .regime-compare { flex-direction: column; }
   .regime-vs { justify-content: center; }
-  .calc-fields-grid { grid-template-columns: 1fr; }
-  .calc-detail-breakdown { grid-template-columns: 1fr; }
+  .calc-fields-grid { grid-template-columns: 1fr 1fr; }
+  .calc-detail-breakdown { grid-template-columns: 1fr 1fr; }
   .smart-tips-section, .expert-cta-banner, .calc-full-width { grid-column: auto; }
 }
 
