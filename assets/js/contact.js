@@ -87,20 +87,35 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Form submission with animation
+  // Form submission — redirect to WhatsApp
   const form = document.querySelector('.contact-form-v2');
   if (form) {
     form.addEventListener('submit', function(e) {
       e.preventDefault();
-      const btn = form.querySelector('.submit-btn');
-      const originalHTML = btn.innerHTML;
-      btn.innerHTML = '<i class="fas fa-check"></i> <span>Message Sent!</span>';
-      btn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
-      setTimeout(() => {
+      var name = (form.querySelector('#cf-name') || {}).value || '';
+      var email = (form.querySelector('#cf-email') || {}).value || '';
+      var phone = (form.querySelector('#cf-phone') || {}).value || '';
+      var service = (form.querySelector('#cf-service') || {}).value || '';
+      var message = (form.querySelector('#cf-message') || {}).value || '';
+
+      var text = 'Hi Legal Idea, I need help.\n\n'
+        + '*Name:* ' + name + '\n'
+        + '*Email:* ' + email + '\n'
+        + (phone ? '*Phone:* ' + phone + '\n' : '')
+        + '*Service:* ' + service + '\n'
+        + (message ? '*Message:* ' + message + '\n' : '');
+
+      var btn = form.querySelector('.submit-btn');
+      var originalHTML = btn.innerHTML;
+      btn.innerHTML = '<i class="fas fa-check"></i> <span>Redirecting to WhatsApp...</span>';
+      btn.style.background = 'linear-gradient(135deg, #25D366, #128C7E)';
+
+      setTimeout(function() {
+        window.open('https://api.whatsapp.com/send?phone=917828054641&text=' + encodeURIComponent(text), '_blank');
         btn.innerHTML = originalHTML;
         btn.style.background = '';
         form.reset();
-      }, 3000);
+      }, 500);
     });
   }
 

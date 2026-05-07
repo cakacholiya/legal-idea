@@ -289,49 +289,161 @@
     </section>
 
     <!-- ═══════ TAX CALCULATOR — Interactive Widget ═══════ -->
-    <section class="section calc-section">
+    <section class="section calc-section" id="tax-calculator">
       <div class="section-inner">
-        <div class="calc-wrapper" data-aos="fade-up">
-          <div class="calc-left">
-            <p class="section-tag tag-amber">TAX CALCULATOR</p>
-            <h2 class="calc-title">See How Much You Could <span class="gradient-underline">Save</span></h2>
-            <p class="calc-desc">Get an instant estimate of your potential tax savings. Our experts can help you save even more.</p>
-            <div class="calc-form">
-              <div class="calc-field">
-                <label for="calc-income">Annual Income (₹)</label>
-                <input type="number" id="calc-income" placeholder="e.g. 800000" value="800000">
-              </div>
-              <div class="calc-field">
-                <label for="calc-regime">Tax Regime</label>
-                <select id="calc-regime">
-                  <option value="old">Old Regime (with deductions)</option>
-                  <option value="new">New Regime (lower rates)</option>
-                </select>
-              </div>
-              <div class="calc-field">
-                <label for="calc-80c">Section 80C Investments (₹)</label>
-                <input type="number" id="calc-80c" placeholder="e.g. 150000" value="150000">
-              </div>
-              <button type="button" class="btn-glow calc-btn" id="calc-submit">
-                <span>Calculate Savings</span>
-                <i class="fas fa-calculator"></i>
-              </button>
+        <div class="calc-hero-header" data-aos="fade-up">
+          <p class="section-tag tag-amber"><i class="fas fa-calculator"></i> TAX CALCULATOR — AY 2026-27</p>
+          <h2 class="calc-title">Smart Tax Calculator: <span class="gradient-underline">Old vs New Regime</span></h2>
+          <p class="calc-desc">Enter your income and deductions — we'll calculate both regimes and tell you which one saves more.</p>
+        </div>
+
+        <div class="calc-wrapper-v2" data-aos="fade-up">
+          <!-- INPUT PANEL -->
+          <div class="calc-input-panel">
+            <div class="calc-panel-header"><i class="fas fa-sliders"></i> Your Details</div>
+
+            <div class="calc-field-v2">
+              <label for="calc-income"><i class="fas fa-indian-rupee-sign"></i> Annual Gross Income</label>
+              <input type="number" id="calc-income" placeholder="e.g. 1200000" value="1200000">
+              <input type="range" id="calc-income-slider" min="0" max="5000000" step="50000" value="1200000" class="calc-slider">
+              <div class="slider-labels"><span>₹0</span><span>₹50L</span></div>
             </div>
-          </div>
-          <div class="calc-right">
-            <div class="calc-result-card">
-              <div class="calc-result-header">Your Estimated Savings</div>
-              <div class="calc-result-amount" id="calc-result">₹46,800</div>
-              <div class="calc-result-sub">per year with our tax planning</div>
-              <div class="calc-breakdown">
-                <div class="cb-row"><span>Gross Tax</span><span id="cb-gross">₹78,000</span></div>
-                <div class="cb-row"><span>After 80C Deduction</span><span id="cb-after">₹31,200</span></div>
-                <div class="cb-row highlight"><span>You Save</span><span id="cb-save">₹46,800</span></div>
+
+            <div class="calc-field-v2">
+              <label for="calc-age"><i class="fas fa-user"></i> Age Group</label>
+              <select id="calc-age">
+                <option value="general">Below 60 years</option>
+                <option value="senior">60-80 years (Senior Citizen)</option>
+                <option value="supersenior">Above 80 years (Super Senior)</option>
+              </select>
+            </div>
+
+            <div class="calc-divider"><span>Deductions (Old Regime)</span></div>
+
+            <div class="calc-fields-grid">
+              <div class="calc-field-v2 compact">
+                <label for="calc-80c"><i class="fas fa-piggy-bank"></i> 80C <span class="field-hint">(PPF, ELSS, LIC, EPF)</span></label>
+                <input type="number" id="calc-80c" placeholder="Max 1,50,000" value="150000">
+                <div class="field-max">Max: ₹1,50,000</div>
               </div>
-              <a href="contact-us.html" class="btn-glow calc-cta">
-                <span>Get Expert Help to Save More</span>
+              <div class="calc-field-v2 compact">
+                <label for="calc-80d"><i class="fas fa-heart-pulse"></i> 80D <span class="field-hint">(Health Insurance)</span></label>
+                <input type="number" id="calc-80d" placeholder="Max 75,000" value="25000">
+                <div class="field-max">Self: ₹25K | Parents: ₹50K</div>
+              </div>
+              <div class="calc-field-v2 compact">
+                <label for="calc-hra"><i class="fas fa-house"></i> HRA Exemption</label>
+                <input type="number" id="calc-hra" placeholder="Annual HRA exempt" value="0">
+                <div class="field-max">Based on rent paid</div>
+              </div>
+              <div class="calc-field-v2 compact">
+                <label for="calc-nps"><i class="fas fa-landmark"></i> 80CCD(1B) <span class="field-hint">(NPS)</span></label>
+                <input type="number" id="calc-nps" placeholder="Max 50,000" value="50000">
+                <div class="field-max">Max: ₹50,000</div>
+              </div>
+              <div class="calc-field-v2 compact">
+                <label for="calc-hloan"><i class="fas fa-home"></i> Home Loan Interest <span class="field-hint">(Sec 24b)</span></label>
+                <input type="number" id="calc-hloan" placeholder="Max 2,00,000" value="0">
+                <div class="field-max">Max: ₹2,00,000</div>
+              </div>
+              <div class="calc-field-v2 compact">
+                <label for="calc-other"><i class="fas fa-plus-circle"></i> Other Deductions <span class="field-hint">(80E, 80G, etc.)</span></label>
+                <input type="number" id="calc-other" placeholder="Any other" value="0">
+                <div class="field-max">Education loan, donations</div>
+              </div>
+            </div>
+
+            <button type="button" class="btn-glow calc-btn-v2" id="calc-submit">
+              <i class="fas fa-bolt"></i>
+              <span>Compare Both Regimes</span>
+            </button>
+          </div>
+
+          <!-- RESULT PANEL -->
+          <div class="calc-result-panel">
+            <div class="calc-panel-header"><i class="fas fa-chart-pie"></i> Tax Analysis</div>
+
+            <!-- Regime Comparison Cards -->
+            <div class="regime-compare">
+              <div class="regime-card regime-old" id="regime-old-card">
+                <div class="regime-badge">Old Regime</div>
+                <div class="regime-tax-label">Tax Payable</div>
+                <div class="regime-tax-amount" id="res-old-tax">₹0</div>
+                <div class="regime-effective">Effective Rate: <strong id="res-old-rate">0%</strong></div>
+              </div>
+              <div class="regime-vs"><span>VS</span></div>
+              <div class="regime-card regime-new" id="regime-new-card">
+                <div class="regime-badge">New Regime</div>
+                <div class="regime-tax-label">Tax Payable</div>
+                <div class="regime-tax-amount" id="res-new-tax">₹0</div>
+                <div class="regime-effective">Effective Rate: <strong id="res-new-rate">0%</strong></div>
+              </div>
+            </div>
+
+            <!-- Winner Banner -->
+            <div class="regime-winner" id="regime-winner">
+              <i class="fas fa-trophy"></i>
+              <div>
+                <strong id="winner-regime">New Regime</strong> saves you more!
+                <div class="winner-amount">You save <span id="winner-amount">₹0</span> extra</div>
+              </div>
+            </div>
+
+            <!-- Visual Tax Bar -->
+            <div class="tax-visual">
+              <div class="tax-bar-label">Tax Comparison</div>
+              <div class="tax-bars">
+                <div class="tax-bar-row">
+                  <span class="bar-label">Old</span>
+                  <div class="bar-track"><div class="bar-fill bar-old" id="bar-old" style="width:0%"></div></div>
+                  <span class="bar-value" id="bar-old-val">₹0</span>
+                </div>
+                <div class="tax-bar-row">
+                  <span class="bar-label">New</span>
+                  <div class="bar-track"><div class="bar-fill bar-new" id="bar-new" style="width:0%"></div></div>
+                  <span class="bar-value" id="bar-new-val">₹0</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Detailed Breakdown -->
+            <div class="calc-detail-breakdown">
+              <div class="detail-col">
+                <h4>Old Regime Breakdown</h4>
+                <div class="cb-row"><span>Gross Income</span><span id="bd-old-gross">₹0</span></div>
+                <div class="cb-row"><span>Standard Deduction</span><span id="bd-old-std">-₹50,000</span></div>
+                <div class="cb-row"><span>Section 80C</span><span id="bd-old-80c">₹0</span></div>
+                <div class="cb-row"><span>Section 80D</span><span id="bd-old-80d">₹0</span></div>
+                <div class="cb-row"><span>HRA + NPS + Others</span><span id="bd-old-others">₹0</span></div>
+                <div class="cb-row"><span>Taxable Income</span><span id="bd-old-taxable" class="fw700">₹0</span></div>
+                <div class="cb-row highlight"><span>Tax + Cess</span><span id="bd-old-final">₹0</span></div>
+              </div>
+              <div class="detail-col">
+                <h4>New Regime Breakdown</h4>
+                <div class="cb-row"><span>Gross Income</span><span id="bd-new-gross">₹0</span></div>
+                <div class="cb-row"><span>Standard Deduction</span><span id="bd-new-std">-₹75,000</span></div>
+                <div class="cb-row dim"><span>No 80C/80D/HRA</span><span>—</span></div>
+                <div class="cb-row dim"><span>No other deductions</span><span>—</span></div>
+                <div class="cb-row"><span>Section 87A Rebate</span><span id="bd-new-rebate">₹0</span></div>
+                <div class="cb-row"><span>Taxable Income</span><span id="bd-new-taxable" class="fw700">₹0</span></div>
+                <div class="cb-row highlight"><span>Tax + Cess</span><span id="bd-new-final">₹0</span></div>
+              </div>
+            </div>
+
+            <!-- Savings Tip -->
+            <div class="savings-tip" id="savings-tip">
+              <i class="fas fa-lightbulb"></i>
+              <p id="savings-tip-text">Enter your details and click "Compare Both Regimes" to see personalized recommendations.</p>
+            </div>
+
+            <div class="calc-bottom-actions">
+              <a href="contact-us.html" class="btn-glow calc-cta-v2">
+                <span>Talk to Expert — Maximize Your Savings</span>
                 <i class="fas fa-arrow-right"></i>
               </a>
+              <button type="button" class="calc-share-btn" id="calc-share-wa">
+                <i class="fab fa-whatsapp"></i> Share Results on WhatsApp
+              </button>
             </div>
           </div>
         </div>

@@ -58,65 +58,177 @@ document.addEventListener('DOMContentLoaded', function () {
   updateCountdown();
   setInterval(updateCountdown, 1000);
 
-  // ── Tax Calculator ──
+  // ── Tax Calculator V2 — AY 2026-27 ──
   var calcBtn = document.getElementById('calc-submit');
+  var incomeInput = document.getElementById('calc-income');
+  var incomeSlider = document.getElementById('calc-income-slider');
+
+  if (incomeInput && incomeSlider) {
+    incomeInput.addEventListener('input', function () { incomeSlider.value = this.value; });
+    incomeSlider.addEventListener('input', function () { incomeInput.value = this.value; });
+  }
+
+  function fmt(n) { return '₹' + Math.round(n).toLocaleString('en-IN'); }
+
+  function calcOldRegimeTax(taxable, age) {
+    if (taxable <= 0) return 0;
+    var exemptLimit = age === 'supersenior' ? 500000 : age === 'senior' ? 300000 : 250000;
+    var tax = 0;
+    var t = Math.max(0, taxable);
+    if (t > 1000000) { tax += (t - 1000000) * 0.30; t = 1000000; }
+    if (t > 500000) { tax += (t - 500000) * 0.20; t = 500000; }
+    if (t > exemptLimit) { tax += (t - exemptLimit) * 0.05; }
+    if (taxable <= 500000) tax = 0;
+    return Math.round(tax * 1.04);
+  }
+
+  function calcNewRegimeTax(taxable) {
+    if (taxable <= 0) return 0;
+    var t = Math.max(0, taxable);
+    var tax = 0;
+    var slabs = [
+      [400000, 0], [800000, 0.05], [1200000, 0.10],
+      [1600000, 0.15], [2000000, 0.20], [2400000, 0.25], [Infinity, 0.30]
+    ];
+    var prev = 0;
+    for (var i = 0; i < slabs.length; i++) {
+      var limit = slabs[i][0], rate = slabs[i][1];
+      var amt = Math.min(t, limit) - prev;
+      if (amt > 0) tax += amt * rate;
+      prev = limit;
+      if (t <= limit) break;
+    }
+    if (taxable <= 1200000) tax = Math.max(0, tax - 60000);
+    if (taxable <= 1200000 && tax < 0) tax = 0;
+    return Math.round(tax * 1.04);
+  }
+
+  function runCalculator() {
+    var income = parseInt(document.getElementById('calc-income').value) || 0;
+    var age = document.getElementById('calc-age').value;
+    var d80c = Math.min(parseInt(document.getElementById('calc-80c').value) || 0, 150000);
+    var d80d = Math.min(parseInt(document.getElementById('calc-80d').value) || 0, 100000);
+    var hra = parseInt(document.getElementById('calc-hra').value) || 0;
+    var nps = Math.min(parseInt(document.getElementById('calc-nps').value) || 0, 50000);
+    var hloan = Math.min(parseInt(document.getElementById('calc-hloan').value) || 0, 200000);
+    var other = parseInt(document.getElementById('calc-other').value) || 0;
+
+    var oldStdDed = 50000;
+    var newStdDed = 75000;
+    var totalOldDed = d80c + d80d + hra + nps + hloan + other + oldStdDed;
+    var oldTaxable = Math.max(0, income - totalOldDed);
+    var newTaxable = Math.max(0, income - newStdDed);
+
+    var oldTax = calcOldRegimeTax(oldTaxable, age);
+    var newTax = calcNewRegimeTax(newTaxable);
+
+    var oldRate = income > 0 ? ((oldTax / income) * 100).toFixed(1) : '0';
+    var newRate = income > 0 ? ((newTax / income) * 100).toFixed(1) : '0';
+
+    document.getElementById('res-old-tax').textContent = fmt(oldTax);
+    document.getElementById('res-new-tax').textContent = fmt(newTax);
+    document.getElementById('res-old-rate').textContent = oldRate + '%';
+    document.getElementById('res-new-rate').textContent = newRate + '%';
+
+    var oldCard = document.getElementById('regime-old-card');
+    var newCard = document.getElementById('regime-new-card');
+    oldCard.classList.remove('winner-highlight');
+    newCard.classList.remove('winner-highlight');
+
+    var winnerEl = document.getElementById('winner-regime');
+    var winnerAmt = document.getElementById('winner-amount');
+    var diff = Math.abs(oldTax - newTax);
+
+    if (oldTax <= newTax) {
+      oldCard.classList.add('winner-highlight');
+      winnerEl.textContent = 'Old Regime';
+      winnerAmt.textContent = fmt(diff);
+    } else {
+      newCard.classList.add('winner-highlight');
+      winnerEl.textContent = 'New Regime';
+      winnerAmt.textContent = fmt(diff);
+    }
+
+    var maxTax = Math.max(oldTax, newTax, 1);
+    document.getElementById('bar-old').style.width = ((oldTax / maxTax) * 100) + '%';
+    document.getElementById('bar-new').style.width = ((newTax / maxTax) * 100) + '%';
+    document.getElementById('bar-old-val').textContent = fmt(oldTax);
+    document.getElementById('bar-new-val').textContent = fmt(newTax);
+
+    document.getElementById('bd-old-gross').textContent = fmt(income);
+    document.getElementById('bd-old-std').textContent = '-' + fmt(oldStdDed);
+    document.getElementById('bd-old-80c').textContent = '-' + fmt(d80c);
+    document.getElementById('bd-old-80d').textContent = '-' + fmt(d80d);
+    document.getElementById('bd-old-others').textContent = '-' + fmt(hra + nps + hloan + other);
+    document.getElementById('bd-old-taxable').textContent = fmt(oldTaxable);
+    document.getElementById('bd-old-final').textContent = fmt(oldTax);
+
+    document.getElementById('bd-new-gross').textContent = fmt(income);
+    document.getElementById('bd-new-std').textContent = '-' + fmt(newStdDed);
+    document.getElementById('bd-new-taxable').textContent = fmt(newTaxable);
+    document.getElementById('bd-new-final').textContent = fmt(newTax);
+    document.getElementById('bd-new-rebate').textContent = newTaxable <= 1200000 ? 'Up to ₹60,000' : '₹0';
+
+    var tipEl = document.getElementById('savings-tip-text');
+    var tips = [];
+    if (income <= 700000) {
+      tips.push('With income up to ₹7 lakh, you pay zero tax under the new regime thanks to the Section 87A rebate.');
+    } else if (income <= 1200000) {
+      tips.push('Great news! With income up to ₹12 lakh, the new regime offers full rebate under Section 87A — effectively zero tax!');
+    }
+    if (oldTax < newTax && totalOldDed > 375000) {
+      tips.push('Your deductions of ' + fmt(totalOldDed) + ' make the old regime significantly better for you. Keep maximizing 80C, 80D, and NPS.');
+    }
+    if (newTax < oldTax) {
+      tips.push('The new regime is better for you. You save ' + fmt(diff) + ' compared to the old regime. Consider redirecting 80C investments into higher-return options since deductions don\'t matter here.');
+    }
+    if (d80c < 150000) {
+      tips.push('You can invest ' + fmt(150000 - d80c) + ' more under Section 80C (PPF, ELSS, NPS Tier-I) to save up to ' + fmt(Math.round((150000 - d80c) * 0.312)) + ' more in old regime.');
+    }
+    if (d80d === 0) {
+      tips.push('Consider buying health insurance — Section 80D allows ₹25,000 deduction for self + ₹50,000 for senior citizen parents.');
+    }
+    if (nps === 0 && income > 1000000) {
+      tips.push('NPS investment of ₹50,000 under 80CCD(1B) can save you ₹15,600 extra in the old regime (at 30% bracket).');
+    }
+    if (tips.length === 0) {
+      tips.push('Enter your income and deductions above to get personalized tax-saving recommendations from our experts.');
+    }
+    tipEl.innerHTML = tips.join('<br><br>');
+  }
+
   if (calcBtn) {
-    function calculateTax() {
-      var income = parseInt(document.getElementById('calc-income').value) || 0;
-      var regime = document.getElementById('calc-regime').value;
-      var deduction80c = Math.min(parseInt(document.getElementById('calc-80c').value) || 0, 150000);
+    calcBtn.addEventListener('click', runCalculator);
+    runCalculator();
+  }
 
-      var taxWithout = 0;
-      var taxWith = 0;
+  var shareBtn = document.getElementById('calc-share-wa');
+  if (shareBtn) {
+    shareBtn.addEventListener('click', function () {
+      var income = document.getElementById('calc-income').value || '0';
+      var oldTax = document.getElementById('res-old-tax').textContent;
+      var newTax = document.getElementById('res-new-tax').textContent;
+      var oldRate = document.getElementById('res-old-rate').textContent;
+      var newRate = document.getElementById('res-new-rate').textContent;
+      var winnerEl = document.getElementById('regime-winner');
+      var winner = winnerEl ? winnerEl.textContent.trim() : '';
+      var tipEl = document.getElementById('savings-tip-text');
+      var tip = tipEl ? tipEl.textContent.trim() : '';
 
-      if (regime === 'old') {
-        taxWithout = calcOldRegimeTax(income);
-        taxWith = calcOldRegimeTax(income - deduction80c - 50000);
-      } else {
-        taxWithout = calcNewRegimeTax(income);
-        taxWith = calcNewRegimeTax(income - 75000);
-      }
+      var text = '📊 *Tax Comparison — AY 2026-27*\n'
+        + '━━━━━━━━━━━━━━━━\n'
+        + '💰 *Gross Income:* ₹' + Number(income).toLocaleString('en-IN') + '\n\n'
+        + '*Old Regime*\n'
+        + '  Tax: ' + oldTax + ' | Eff. Rate: ' + oldRate + '\n\n'
+        + '*New Regime*\n'
+        + '  Tax: ' + newTax + ' | Eff. Rate: ' + newRate + '\n\n'
+        + (winner ? '🏆 ' + winner + '\n\n' : '')
+        + (tip ? '💡 *Tip:* ' + tip + '\n\n' : '')
+        + '🔗 Try the calculator yourself: https://cakacholiya.github.io/legal-idea/\n'
+        + '_Powered by Legal Idea_';
 
-      var savings = Math.max(0, taxWithout - taxWith);
-
-      document.getElementById('calc-result').textContent = '₹' + savings.toLocaleString('en-IN');
-      document.getElementById('cb-gross').textContent = '₹' + taxWithout.toLocaleString('en-IN');
-      document.getElementById('cb-after').textContent = '₹' + taxWith.toLocaleString('en-IN');
-      document.getElementById('cb-save').textContent = '₹' + savings.toLocaleString('en-IN');
-    }
-
-    function calcOldRegimeTax(taxable) {
-      if (taxable <= 0) return 0;
-      taxable = Math.max(0, taxable);
-      var tax = 0;
-      if (taxable > 1000000) { tax += (taxable - 1000000) * 0.30; taxable = 1000000; }
-      if (taxable > 500000) { tax += (taxable - 500000) * 0.20; taxable = 500000; }
-      if (taxable > 250000) { tax += (taxable - 250000) * 0.05; }
-      return Math.round(tax * 1.04);
-    }
-
-    function calcNewRegimeTax(taxable) {
-      if (taxable <= 0) return 0;
-      taxable = Math.max(0, taxable);
-      var tax = 0;
-      var slabs = [
-        [300000, 0], [600000, 0.05], [900000, 0.10],
-        [1200000, 0.15], [1500000, 0.20], [Infinity, 0.30]
-      ];
-      var prev = 0;
-      for (var i = 0; i < slabs.length; i++) {
-        var limit = slabs[i][0];
-        var rate = slabs[i][1];
-        var slabAmount = Math.min(taxable, limit) - prev;
-        if (slabAmount > 0) tax += slabAmount * rate;
-        prev = limit;
-        if (taxable <= limit) break;
-      }
-      return Math.round(tax * 1.04);
-    }
-
-    calcBtn.addEventListener('click', calculateTax);
-    calculateTax();
+      window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(text), '_blank');
+    });
   }
 
   // ── Animated stat counters (ring numbers) ──
