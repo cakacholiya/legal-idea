@@ -202,7 +202,19 @@ document.addEventListener('DOMContentLoaded', function () {
     runCalculator();
   }
 
-  // Info tooltip toggles
+  // Info modal overlay
+  var overlay = document.createElement('div');
+  overlay.className = 'info-overlay';
+  overlay.innerHTML = '<div class="info-modal"><button type="button" class="info-modal-close">&times;</button><div class="info-modal-body"></div></div>';
+  document.body.appendChild(overlay);
+  var modalBody = overlay.querySelector('.info-modal-body');
+  var modalClose = overlay.querySelector('.info-modal-close');
+
+  function closeInfoModal() { overlay.classList.remove('visible'); }
+  modalClose.addEventListener('click', closeInfoModal);
+  overlay.addEventListener('click', function (e) { if (e.target === overlay) closeInfoModal(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeInfoModal(); });
+
   document.querySelectorAll('.info-btn').forEach(function (btn) {
     btn.addEventListener('click', function (e) {
       e.preventDefault();
@@ -210,16 +222,85 @@ document.addEventListener('DOMContentLoaded', function () {
       var key = btn.getAttribute('data-tooltip');
       var popup = document.getElementById('info-' + key);
       if (!popup) return;
-      var wasVisible = popup.classList.contains('visible');
-      document.querySelectorAll('.info-popup.visible').forEach(function (p) { p.classList.remove('visible'); });
-      if (!wasVisible) popup.classList.add('visible');
+      modalBody.innerHTML = popup.innerHTML;
+      overlay.classList.add('visible');
     });
   });
-  document.addEventListener('click', function (e) {
-    if (!e.target.closest('.info-popup') && !e.target.closest('.info-btn')) {
-      document.querySelectorAll('.info-popup.visible').forEach(function (p) { p.classList.remove('visible'); });
+
+  // URL param sharing
+  function getCalcParams() {
+    return {
+      i: document.getElementById('calc-income').value,
+      a: document.getElementById('calc-age').value,
+      c: document.getElementById('calc-80c').value,
+      d: document.getElementById('calc-80d').value,
+      h: document.getElementById('calc-hra').value,
+      n: document.getElementById('calc-nps').value,
+      l: document.getElementById('calc-hloan').value,
+      o: document.getElementById('calc-other').value
+    };
+  }
+
+  function buildShareUrl(prefill) {
+    var base = window.location.origin + window.location.pathname + '#tax-calculator';
+    if (!prefill) return base;
+    var p = getCalcParams();
+    return base + '?ci=' + p.i + '&ca=' + p.a + '&c80c=' + p.c + '&c80d=' + p.d
+      + '&chra=' + p.h + '&cnps=' + p.n + '&chl=' + p.l + '&coth=' + p.o;
+  }
+
+  function loadFromUrl() {
+    var params = new URLSearchParams(window.location.search);
+    if (!params.has('ci')) return false;
+    var map = { ci: 'calc-income', ca: 'calc-age', c80c: 'calc-80c', c80d: 'calc-80d',
+                chra: 'calc-hra', cnps: 'calc-nps', chl: 'calc-hloan', coth: 'calc-other' };
+    var hasData = false;
+    Object.keys(map).forEach(function (k) {
+      var v = params.get(k);
+      if (v !== null) {
+        var el = document.getElementById(map[k]);
+        if (el) { el.value = v; hasData = true; }
+      }
+    });
+    var slider = document.getElementById('calc-income-slider');
+    if (slider && params.get('ci')) slider.value = params.get('ci');
+    if (hasData) {
+      runCalculator();
+      setTimeout(function () {
+        var sec = document.getElementById('tax-calculator');
+        if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 300);
     }
-  });
+    return hasData;
+  }
+  loadFromUrl();
+
+  var shareLinkBtn = document.getElementById('calc-share-link');
+  var shareLinkBar = document.getElementById('share-link-bar');
+  var shareUrlInput = document.getElementById('calc-share-url');
+  var copyUrlBtn = document.getElementById('calc-copy-url');
+
+  if (shareLinkBtn) {
+    shareLinkBtn.addEventListener('click', function () {
+      var url = buildShareUrl(true);
+      shareUrlInput.value = url;
+      shareLinkBar.style.display = 'flex';
+      shareUrlInput.select();
+    });
+  }
+  if (copyUrlBtn) {
+    copyUrlBtn.addEventListener('click', function () {
+      shareUrlInput.select();
+      navigator.clipboard.writeText(shareUrlInput.value).then(function () {
+        copyUrlBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        copyUrlBtn.classList.add('copied');
+        setTimeout(function () {
+          copyUrlBtn.innerHTML = '<i class="fas fa-copy"></i> Copy';
+          copyUrlBtn.classList.remove('copied');
+        }, 2000);
+      });
+    });
+  }
 
   var shareBtn = document.getElementById('calc-share-wa');
   if (shareBtn) {
@@ -243,7 +324,7 @@ document.addEventListener('DOMContentLoaded', function () {
         + '  Tax: ' + newTax + ' | Eff. Rate: ' + newRate + '\n\n'
         + (winner ? '🏆 ' + winner + '\n\n' : '')
         + (tip ? '💡 *Tip:* ' + tip + '\n\n' : '')
-        + '🔗 Try the calculator yourself: https://cakacholiya.github.io/legal-idea/\n'
+        + '🔗 Try with my values: ' + buildShareUrl(true) + '\n'
         + '_Powered by Legal Idea_';
 
       window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(text), '_blank');
