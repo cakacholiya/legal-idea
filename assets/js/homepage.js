@@ -202,6 +202,25 @@ document.addEventListener('DOMContentLoaded', function () {
     runCalculator();
   }
 
+  // Info tooltip toggles
+  document.querySelectorAll('.info-btn').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var key = btn.getAttribute('data-tooltip');
+      var popup = document.getElementById('info-' + key);
+      if (!popup) return;
+      var wasVisible = popup.classList.contains('visible');
+      document.querySelectorAll('.info-popup.visible').forEach(function (p) { p.classList.remove('visible'); });
+      if (!wasVisible) popup.classList.add('visible');
+    });
+  });
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.info-popup') && !e.target.closest('.info-btn')) {
+      document.querySelectorAll('.info-popup.visible').forEach(function (p) { p.classList.remove('visible'); });
+    }
+  });
+
   var shareBtn = document.getElementById('calc-share-wa');
   if (shareBtn) {
     shareBtn.addEventListener('click', function () {

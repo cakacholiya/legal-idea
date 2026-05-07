@@ -426,7 +426,78 @@
 .savings-tip i { color: #f59e0b; font-size: 1.2rem; margin-top: 0.1rem; }
 .savings-tip p { font-size: 0.88rem; color: #475569; line-height: 1.6; margin: 0; }
 
-.calc-bottom-actions { display: flex; flex-direction: column; gap: 0.8rem; }
+/* Info (i) button & popup */
+.info-btn {
+  background: none; border: none; cursor: pointer; color: var(--primary); font-size: 0.85rem;
+  margin-left: 0.3rem; padding: 0; vertical-align: middle; transition: color 0.2s;
+}
+.info-btn:hover { color: var(--primary-dark); }
+.calc-field-v2 { position: relative; }
+.info-popup {
+  display: none; position: absolute; top: 100%; left: 0; right: 0; z-index: 50;
+  background: white; border: 1px solid var(--gray-200); border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.15); padding: 1.2rem 1.4rem; margin-top: 0.4rem;
+  font-size: 0.85rem; color: var(--gray-700); line-height: 1.65; animation: infoFadeIn 0.2s ease;
+}
+.info-popup.visible { display: block; }
+@keyframes infoFadeIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+.info-popup-header { font-weight: 700; color: var(--navy); font-size: 0.95rem; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.5rem; }
+.info-popup ul { margin: 0.5rem 0 0.8rem 1.2rem; padding: 0; }
+.info-popup li { margin-bottom: 0.3rem; }
+.info-popup .info-tip {
+  background: linear-gradient(135deg, #f0fdf4, #ecfdf5); border: 1px solid #bbf7d0; border-radius: 8px;
+  padding: 0.6rem 0.8rem; margin-top: 0.6rem; font-size: 0.82rem; color: #166534;
+}
+.info-popup .info-tip i { color: #22c55e; margin-right: 0.3rem; }
+.info-popup .info-table { width: 100%; border-collapse: collapse; margin: 0.6rem 0; font-size: 0.82rem; }
+.info-popup .info-table th { background: var(--primary); color: white; padding: 0.4rem 0.6rem; text-align: left; font-weight: 600; }
+.info-popup .info-table td { padding: 0.4rem 0.6rem; border-bottom: 1px solid var(--gray-100); }
+
+/* Smart Tips */
+.smart-tips-section { margin-top: 1.5rem; }
+.smart-tips-header { font-size: 0.95rem; font-weight: 700; color: var(--navy); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem; }
+.smart-tips-header i { color: #f59e0b; }
+.smart-tips-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+.smart-tip-card {
+  background: var(--gray-50); border: 1px solid var(--gray-100); border-radius: 10px; padding: 0.9rem 1rem;
+  transition: all 0.25s; cursor: default;
+}
+.smart-tip-card:hover { border-color: var(--primary-light); background: #f0f0ff; transform: translateY(-2px); }
+.smart-tip-card .tip-icon { width: 32px; height: 32px; border-radius: 8px; background: rgba(99,102,241,0.1); display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 0.85rem; margin-bottom: 0.4rem; }
+.smart-tip-card h5 { font-size: 0.82rem; font-weight: 700; color: var(--navy); margin-bottom: 0.25rem; }
+.smart-tip-card p { font-size: 0.78rem; color: var(--gray-600); line-height: 1.5; margin: 0; }
+
+/* Expert CTA Banner */
+.expert-cta-banner {
+  margin-top: 1.5rem; border-radius: 16px; overflow: hidden;
+  background: linear-gradient(135deg, #0f172a, #1e1b4b); color: white; padding: 1.8rem 1.5rem;
+}
+.expert-cta-stats { display: flex; justify-content: space-around; margin-bottom: 1.5rem; padding-bottom: 1.2rem; border-bottom: 1px solid rgba(255,255,255,0.12); }
+.expert-stat { text-align: center; }
+.expert-stat-number { font-size: 1.4rem; font-weight: 900; background: linear-gradient(135deg, #818cf8, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.expert-stat-label { font-size: 0.72rem; color: rgba(255,255,255,0.6); margin-top: 0.15rem; }
+.expert-cta-content { margin-bottom: 1.3rem; }
+.expert-cta-badge { display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(34,197,94,0.15); color: #4ade80; padding: 0.35rem 0.9rem; border-radius: 20px; font-size: 0.78rem; font-weight: 600; margin-bottom: 0.7rem; }
+.expert-cta-content h4 { font-size: 1.1rem; font-weight: 800; line-height: 1.35; margin-bottom: 0.6rem; }
+.expert-cta-content p { font-size: 0.82rem; line-height: 1.6; color: rgba(255,255,255,0.75); margin: 0 0 0.8rem; }
+.expert-cta-features { display: grid; grid-template-columns: 1fr 1fr; gap: 0.3rem 0.5rem; margin-bottom: 0.8rem; }
+.expert-cta-features span { font-size: 0.78rem; color: rgba(255,255,255,0.7); display: flex; align-items: center; gap: 0.3rem; }
+.expert-cta-features span i { color: #4ade80; font-size: 0.7rem; }
+.expert-cta-urgency { background: rgba(245,158,11,0.15); color: #fbbf24; padding: 0.5rem 0.8rem; border-radius: 8px; font-size: 0.78rem; font-weight: 600; display: flex; align-items: center; gap: 0.4rem; }
+.expert-cta-actions { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1.2rem; }
+.expert-cta-actions .calc-cta-v2 { font-size: 0.88rem; }
+.expert-wa-btn {
+  width: 100%; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+  padding: 0.85rem 1.5rem; border-radius: 50px; background: #25D366; color: white;
+  font-size: 0.88rem; font-weight: 700; text-decoration: none; transition: all 0.3s;
+}
+.expert-wa-btn:hover { background: #1da851; transform: translateY(-1px); }
+.expert-cta-trust { display: flex; justify-content: center; gap: 1.5rem; margin-top: 1rem; flex-wrap: wrap; }
+.expert-cta-trust span { font-size: 0.72rem; color: rgba(255,255,255,0.5); display: flex; align-items: center; gap: 0.3rem; }
+.expert-cta-trust span i { color: #fbbf24; font-size: 0.65rem; }
+.expert-cta-trust span:last-child i { color: rgba(255,255,255,0.4); }
+
+.calc-bottom-actions { display: flex; flex-direction: column; gap: 0.8rem; margin-top: 1rem; }
 .calc-cta-v2 { width: 100%; justify-content: center; font-size: 0.92rem; padding: 1rem 1.5rem; }
 .calc-share-btn {
   width: 100%; padding: 0.85rem 1.5rem; border-radius: 50px; border: 2px solid #25D366;
@@ -434,6 +505,12 @@
   display: flex; align-items: center; justify-content: center; gap: 0.6rem; transition: all 0.3s;
 }
 .calc-share-btn:hover { background: #25D366; color: white; }
+
+@media(max-width:600px) {
+  .smart-tips-grid { grid-template-columns: 1fr; }
+  .expert-cta-stats { flex-direction: column; gap: 0.8rem; }
+  .expert-cta-features { grid-template-columns: 1fr; }
+}
 
 /* Legacy calc styles kept for cb-row reuse */
 .calc-result-amount-legacy {

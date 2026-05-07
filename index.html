@@ -322,34 +322,138 @@
 
             <div class="calc-fields-grid">
               <div class="calc-field-v2 compact">
-                <label for="calc-80c"><i class="fas fa-piggy-bank"></i> 80C <span class="field-hint">(PPF, ELSS, LIC, EPF)</span></label>
+                <label for="calc-80c"><i class="fas fa-piggy-bank"></i> 80C <span class="field-hint">(PPF, ELSS, LIC, EPF)</span>
+                  <button type="button" class="info-btn" data-tooltip="80c"><i class="fas fa-info-circle"></i></button>
+                </label>
                 <input type="number" id="calc-80c" placeholder="Max 1,50,000" value="150000">
                 <div class="field-max">Max: ₹1,50,000</div>
+                <div class="info-popup" id="info-80c">
+                  <div class="info-popup-header"><i class="fas fa-piggy-bank"></i> Section 80C — Investment & Savings Deductions</div>
+                  <p><strong>Max Limit:</strong> ₹1,50,000 per year</p>
+                  <p><strong>What to include:</strong></p>
+                  <ul>
+                    <li><strong>PPF</strong> — Public Provident Fund contributions</li>
+                    <li><strong>ELSS</strong> — Equity Linked Savings Scheme (tax-saving mutual funds)</li>
+                    <li><strong>LIC</strong> — Life Insurance premium payments</li>
+                    <li><strong>EPF</strong> — Employee Provident Fund (your contribution)</li>
+                    <li><strong>NSC</strong> — National Savings Certificate</li>
+                    <li><strong>SSY</strong> — Sukanya Samriddhi Yojana</li>
+                    <li><strong>Tax-saving FD</strong> — 5-year fixed deposit</li>
+                    <li><strong>Tuition fees</strong> — For up to 2 children</li>
+                    <li><strong>Home Loan Principal</strong> — Repayment amount</li>
+                    <li><strong>Stamp duty</strong> — On property purchase</li>
+                  </ul>
+                  <div class="info-tip"><i class="fas fa-lightbulb"></i> Most salaried individuals can easily claim the full ₹1.5L through EPF + PPF/ELSS combination.</div>
+                </div>
               </div>
               <div class="calc-field-v2 compact">
-                <label for="calc-80d"><i class="fas fa-heart-pulse"></i> 80D <span class="field-hint">(Health Insurance)</span></label>
+                <label for="calc-80d"><i class="fas fa-heart-pulse"></i> 80D <span class="field-hint">(Health Insurance)</span>
+                  <button type="button" class="info-btn" data-tooltip="80d"><i class="fas fa-info-circle"></i></button>
+                </label>
                 <input type="number" id="calc-80d" placeholder="Max 75,000" value="25000">
                 <div class="field-max">Self: ₹25K | Parents: ₹50K</div>
+                <div class="info-popup" id="info-80d">
+                  <div class="info-popup-header"><i class="fas fa-heart-pulse"></i> Section 80D — Health Insurance Premium</div>
+                  <p><strong>What to include:</strong></p>
+                  <ul>
+                    <li><strong>Self/Family premium</strong> — Up to ₹25,000 (₹50,000 if senior citizen)</li>
+                    <li><strong>Parents' premium</strong> — Up to ₹25,000 (₹50,000 if parents are senior citizens)</li>
+                    <li><strong>Preventive health check-up</strong> — Up to ₹5,000 (within above limits)</li>
+                  </ul>
+                  <table class="info-table">
+                    <tr><th>Scenario</th><th>Max Deduction</th></tr>
+                    <tr><td>Self &lt; 60, Parents &lt; 60</td><td>₹50,000</td></tr>
+                    <tr><td>Self &lt; 60, Parents ≥ 60</td><td>₹75,000</td></tr>
+                    <tr><td>Self ≥ 60, Parents ≥ 60</td><td>₹1,00,000</td></tr>
+                  </table>
+                  <div class="info-tip"><i class="fas fa-lightbulb"></i> Even if your employer provides group insurance, you can claim additional personal health insurance premiums.</div>
+                </div>
               </div>
               <div class="calc-field-v2 compact">
-                <label for="calc-hra"><i class="fas fa-house"></i> HRA Exemption</label>
+                <label for="calc-hra"><i class="fas fa-house"></i> HRA Exemption
+                  <button type="button" class="info-btn" data-tooltip="hra"><i class="fas fa-info-circle"></i></button>
+                </label>
                 <input type="number" id="calc-hra" placeholder="Annual HRA exempt" value="0">
                 <div class="field-max">Based on rent paid</div>
+                <div class="info-popup" id="info-hra">
+                  <div class="info-popup-header"><i class="fas fa-house"></i> HRA Exemption — House Rent Allowance</div>
+                  <p><strong>Who can claim:</strong> Salaried individuals who receive HRA and pay rent</p>
+                  <p><strong>Exempt amount is the minimum of:</strong></p>
+                  <ul>
+                    <li>Actual HRA received from employer</li>
+                    <li>50% of basic salary (metro cities) or 40% (non-metro)</li>
+                    <li>Actual rent paid minus 10% of basic salary</li>
+                  </ul>
+                  <p><strong>Documents needed:</strong> Rent receipts, landlord PAN (if rent &gt; ₹1L/year), rent agreement</p>
+                  <div class="info-tip"><i class="fas fa-lightbulb"></i> If you don't receive HRA but pay rent, you can still claim up to ₹60,000 under Section 80GG.</div>
+                </div>
               </div>
               <div class="calc-field-v2 compact">
-                <label for="calc-nps"><i class="fas fa-landmark"></i> 80CCD(1B) <span class="field-hint">(NPS)</span></label>
+                <label for="calc-nps"><i class="fas fa-landmark"></i> 80CCD(1B) <span class="field-hint">(NPS)</span>
+                  <button type="button" class="info-btn" data-tooltip="nps"><i class="fas fa-info-circle"></i></button>
+                </label>
                 <input type="number" id="calc-nps" placeholder="Max 50,000" value="50000">
                 <div class="field-max">Max: ₹50,000</div>
+                <div class="info-popup" id="info-nps">
+                  <div class="info-popup-header"><i class="fas fa-landmark"></i> Section 80CCD(1B) — National Pension System</div>
+                  <p><strong>Max Limit:</strong> ₹50,000 (over and above 80C limit)</p>
+                  <p><strong>What to include:</strong></p>
+                  <ul>
+                    <li>Voluntary contributions to NPS Tier-I account</li>
+                    <li>This is an <strong>additional</strong> deduction beyond the ₹1.5L of Section 80C</li>
+                  </ul>
+                  <p><strong>Benefits:</strong></p>
+                  <ul>
+                    <li>Total tax saving: up to ₹15,600 (at 30% + cess bracket)</li>
+                    <li>Long-term retirement corpus with market-linked returns</li>
+                    <li>Partial withdrawal allowed after 3 years for specific purposes</li>
+                  </ul>
+                  <div class="info-tip"><i class="fas fa-lightbulb"></i> NPS gives a double benefit — retirement savings + extra ₹50K tax deduction above 80C. One of the most tax-efficient instruments available.</div>
+                </div>
               </div>
               <div class="calc-field-v2 compact">
-                <label for="calc-hloan"><i class="fas fa-home"></i> Home Loan Interest <span class="field-hint">(Sec 24b)</span></label>
+                <label for="calc-hloan"><i class="fas fa-home"></i> Home Loan Interest <span class="field-hint">(Sec 24b)</span>
+                  <button type="button" class="info-btn" data-tooltip="hloan"><i class="fas fa-info-circle"></i></button>
+                </label>
                 <input type="number" id="calc-hloan" placeholder="Max 2,00,000" value="0">
                 <div class="field-max">Max: ₹2,00,000</div>
+                <div class="info-popup" id="info-hloan">
+                  <div class="info-popup-header"><i class="fas fa-home"></i> Section 24(b) — Home Loan Interest</div>
+                  <p><strong>Max Limit:</strong> ₹2,00,000 per year (self-occupied property)</p>
+                  <p><strong>What to include:</strong></p>
+                  <ul>
+                    <li>Interest component of your home loan EMI</li>
+                    <li>Pre-construction interest (claimable in 5 equal installments after possession)</li>
+                  </ul>
+                  <p><strong>Important:</strong></p>
+                  <ul>
+                    <li>For let-out property, there's no upper limit on interest deduction</li>
+                    <li>Construction must be completed within 5 years from the end of the financial year of borrowing</li>
+                    <li>Additional ₹1.5L deduction under Sec 80EEA for affordable housing (if applicable)</li>
+                  </ul>
+                  <div class="info-tip"><i class="fas fa-lightbulb"></i> Your bank provides an interest certificate annually. The principal portion is claimed under 80C, and the interest here under Sec 24(b).</div>
+                </div>
               </div>
               <div class="calc-field-v2 compact">
-                <label for="calc-other"><i class="fas fa-plus-circle"></i> Other Deductions <span class="field-hint">(80E, 80G, etc.)</span></label>
+                <label for="calc-other"><i class="fas fa-plus-circle"></i> Other Deductions <span class="field-hint">(80E, 80G, etc.)</span>
+                  <button type="button" class="info-btn" data-tooltip="other"><i class="fas fa-info-circle"></i></button>
+                </label>
                 <input type="number" id="calc-other" placeholder="Any other" value="0">
                 <div class="field-max">Education loan, donations</div>
+                <div class="info-popup" id="info-other">
+                  <div class="info-popup-header"><i class="fas fa-plus-circle"></i> Other Deductions</div>
+                  <p><strong>Commonly claimed deductions:</strong></p>
+                  <ul>
+                    <li><strong>80E — Education Loan Interest</strong>: Full interest amount for 8 years (no cap)</li>
+                    <li><strong>80G — Charitable Donations</strong>: 50% or 100% deduction depending on the fund/institution</li>
+                    <li><strong>80TTA — Savings Account Interest</strong>: Up to ₹10,000 (₹50,000 for seniors under 80TTB)</li>
+                    <li><strong>80DD — Disabled Dependent</strong>: ₹75,000 (₹1,25,000 for severe disability)</li>
+                    <li><strong>80U — Self Disability</strong>: ₹75,000 or ₹1,25,000</li>
+                    <li><strong>80DDB — Medical Treatment</strong>: Up to ₹40,000 (₹1,00,000 for seniors)</li>
+                    <li><strong>80GG — Rent (no HRA)</strong>: Up to ₹60,000/year</li>
+                  </ul>
+                  <div class="info-tip"><i class="fas fa-lightbulb"></i> Many people miss claiming 80TTA (savings interest) and 80G (donations). Check your bank statements and donation receipts!</div>
+                </div>
               </div>
             </div>
 
@@ -436,11 +540,77 @@
               <p id="savings-tip-text">Enter your details and click "Compare Both Regimes" to see personalized recommendations.</p>
             </div>
 
+            <!-- Smart Tax Tips -->
+            <div class="smart-tips-section" id="smart-tips">
+              <div class="smart-tips-header"><i class="fas fa-wand-magic-sparkles"></i> Smart Tax-Saving Tips For You</div>
+              <div class="smart-tips-grid" id="smart-tips-grid">
+                <div class="smart-tip-card" data-tip="80c">
+                  <div class="tip-icon"><i class="fas fa-piggy-bank"></i></div>
+                  <h5>Maximize 80C Investments</h5>
+                  <p>Invest the full ₹1.5L in ELSS (best returns), PPF (safe), or NPS Tier-I for maximum deduction.</p>
+                </div>
+                <div class="smart-tip-card" data-tip="nps">
+                  <div class="tip-icon"><i class="fas fa-landmark"></i></div>
+                  <h5>Extra ₹50K via NPS</h5>
+                  <p>80CCD(1B) gives an additional ₹50,000 deduction over 80C. That's ₹15,600 extra savings at 30% slab.</p>
+                </div>
+                <div class="smart-tip-card" data-tip="health">
+                  <div class="tip-icon"><i class="fas fa-heart-pulse"></i></div>
+                  <h5>Health Insurance = Savings</h5>
+                  <p>A family health plan of ₹25K + parents' plan of ₹50K = ₹75K deduction. Protection + tax saving.</p>
+                </div>
+                <div class="smart-tip-card" data-tip="hra">
+                  <div class="tip-icon"><i class="fas fa-house"></i></div>
+                  <h5>Don't Miss HRA</h5>
+                  <p>If you live in a rented house, HRA exemption can save ₹50,000–₹2,00,000+ depending on your salary and rent.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Expert CTA Banner -->
+            <div class="expert-cta-banner">
+              <div class="expert-cta-stats">
+                <div class="expert-stat">
+                  <div class="expert-stat-number">₹2.4 Cr+</div>
+                  <div class="expert-stat-label">Tax Saved for Clients</div>
+                </div>
+                <div class="expert-stat">
+                  <div class="expert-stat-number">1000+</div>
+                  <div class="expert-stat-label">Returns Filed Annually</div>
+                </div>
+                <div class="expert-stat">
+                  <div class="expert-stat-number">98%</div>
+                  <div class="expert-stat-label">Client Satisfaction</div>
+                </div>
+              </div>
+              <div class="expert-cta-content">
+                <div class="expert-cta-badge"><i class="fas fa-shield-check"></i> Free 15-Minute Consultation</div>
+                <h4>Our Experts Helped Clients Save an Average of ₹47,000 Last Year</h4>
+                <p>This calculator gives you an estimate — but our CA-certified experts can uncover <strong>hidden deductions</strong> you might be missing, review your <strong>investment portfolio</strong>, and create a <strong>personalized tax plan</strong> that maximizes your savings legally.</p>
+                <div class="expert-cta-features">
+                  <span><i class="fas fa-check-circle"></i> Personalized regime analysis</span>
+                  <span><i class="fas fa-check-circle"></i> Investment restructuring advice</span>
+                  <span><i class="fas fa-check-circle"></i> HRA & salary restructuring tips</span>
+                  <span><i class="fas fa-check-circle"></i> Year-round tax planning</span>
+                </div>
+                <div class="expert-cta-urgency"><i class="fas fa-clock"></i> ITR filing deadline approaching — Don't lose your deductions!</div>
+              </div>
+              <div class="expert-cta-actions">
+                <a href="contact-us.html" class="btn-glow calc-cta-v2">
+                  <span>Talk to Tax Expert — It's Free</span>
+                  <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="https://api.whatsapp.com/send?phone=917828054641&text=Hi%2C%20I%20used%20your%20tax%20calculator%20and%20would%20like%20expert%20advice%20on%20saving%20more%20tax." target="_blank" rel="noopener noreferrer" class="expert-wa-btn">
+                  <i class="fab fa-whatsapp"></i> Chat on WhatsApp Now
+                </a>
+              </div>
+              <div class="expert-cta-trust">
+                <span><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> 4.8/5 from 500+ clients</span>
+                <span><i class="fas fa-lock"></i> Your data is 100% confidential</span>
+              </div>
+            </div>
+
             <div class="calc-bottom-actions">
-              <a href="contact-us.html" class="btn-glow calc-cta-v2">
-                <span>Talk to Expert — Maximize Your Savings</span>
-                <i class="fas fa-arrow-right"></i>
-              </a>
               <button type="button" class="calc-share-btn" id="calc-share-wa">
                 <i class="fab fa-whatsapp"></i> Share Results on WhatsApp
               </button>
