@@ -270,6 +270,15 @@ document.addEventListener('DOMContentLoaded', function () {
       var slider = document.getElementById('calc-income-slider');
       if (slider && params.get('ci')) slider.value = params.get('ci');
       runCalculator();
+    } else if (params.has('calc')) {
+      var fields = ['calc-income', 'calc-80c', 'calc-80d', 'calc-hra', 'calc-nps', 'calc-hloan', 'calc-other'];
+      fields.forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el) el.value = '';
+      });
+      var slider = document.getElementById('calc-income-slider');
+      if (slider) slider.value = 0;
+      document.getElementById('calc-age').value = 'general';
     }
     if (scrollToCalc) {
       setTimeout(function () {
@@ -286,7 +295,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var shareUrlInput = document.getElementById('calc-share-url');
   var copyUrlBtn = document.getElementById('calc-copy-url');
 
-  var shareEmptyBtn = document.getElementById('calc-share-empty');
+  var shareCalcWaBtn = document.getElementById('calc-share-calc-wa');
 
   function showShareUrl(url) {
     shareUrlInput.value = url;
@@ -297,8 +306,20 @@ document.addEventListener('DOMContentLoaded', function () {
   if (shareLinkBtn) {
     shareLinkBtn.addEventListener('click', function () { showShareUrl(buildShareUrl(true)); });
   }
-  if (shareEmptyBtn) {
-    shareEmptyBtn.addEventListener('click', function () { showShareUrl(buildShareUrl(false)); });
+  if (shareCalcWaBtn) {
+    shareCalcWaBtn.addEventListener('click', function () {
+      var calcUrl = buildShareUrl(false);
+      var msg = '🧮 Hey! I found this really useful *Free Tax Calculator* on Legal Idea.\n\n'
+        + 'It compares Old vs New Tax Regime (AY 2026-27) instantly and tells you which one saves more money! 💰\n\n'
+        + '✅ Enter your income & deductions\n'
+        + '✅ Get instant comparison of both regimes\n'
+        + '✅ See exactly how much you can save\n'
+        + '✅ Get personalized tax-saving tips\n\n'
+        + '👉 Try it here: ' + calcUrl + '\n\n'
+        + 'It takes just 30 seconds! Helped me figure out the best regime for my salary. 🙌\n\n'
+        + '_Powered by Legal Idea — India\'s trusted tax partner since 2016_';
+      window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(msg), '_blank');
+    });
   }
   if (copyUrlBtn) {
     copyUrlBtn.addEventListener('click', function () {
